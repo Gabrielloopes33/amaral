@@ -1,10 +1,10 @@
-import { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, MessageCircle, Sparkles } from "lucide-react";
+import { ArrowLeft, ArrowRight, MessageCircle, Sparkles, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -73,6 +73,34 @@ export default function DiagnosticoPage() {
 
     const href = `https://wa.me/55SEUNUMERO?text=${encodeURIComponent(text)}`;
     window.open(href, "_blank", "noopener,noreferrer");
+    setSubmitted(true);
+  }
+
+  const [submitted, setSubmitted] = useState(false);
+
+  if (submitted) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-md w-full glass p-8 rounded-3xl text-center"
+        >
+          <div className="w-16 h-16 bg-violet-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="h-8 w-8 text-violet-500" />
+          </div>
+          <h2 className="font-display text-2xl font-bold mb-4">Quase lá!</h2>
+          <p className="text-white/60 leading-relaxed mb-8">
+            Seu formulário foi enviado. Você deve ter sido redirecionado para o meu WhatsApp. <br/><br/>
+            <strong>O que acontece agora?</strong><br/>
+            Eu vou analisar seu perfil pessoalmente e entrarei em contato em até 24h para agendarmos nosso diagnóstico.
+          </p>
+          <Link href="/">
+            <Button variant="outline" className="rounded-full border-white/10">Voltar para o início</Button>
+          </Link>
+        </motion.div>
+      </div>
+    );
   }
 
   return (

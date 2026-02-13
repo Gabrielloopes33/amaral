@@ -1,34 +1,34 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Zap, Shield, TrendingUp } from "lucide-react";
+import { 
+  ArrowRight, 
+  Sparkles, 
+  Zap, 
+  Shield, 
+  TrendingUp, 
+  ChevronDown, 
+  CheckCircle2, 
+  Instagram, 
+  Info,
+  Target,
+  Layout,
+  RefreshCcw,
+  Navigation,
+  Play
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0 },
 };
-
-function Metric({ value, label, testId }: { value: string; label: string; testId: string }) {
-  return (
-    <div className="flex flex-col gap-1" data-testid={testId}>
-      <div className="font-display text-2xl tracking-tight text-white md:text-3xl">{value}</div>
-      <div className="text-sm text-white/60">{label}</div>
-    </div>
-  );
-}
-
-function Pill({ children, testId }: { children: React.ReactNode; testId: string }) {
-  return (
-    <span
-      data-testid={testId}
-      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs font-medium text-white/70"
-    >
-      <Sparkles className="h-3.5 w-3.5 text-cyan-300/90" strokeWidth={2} />
-      {children}
-    </span>
-  );
-}
 
 function NavLink({ href, children, testId }: { href: string; children: React.ReactNode; testId: string }) {
   return (
@@ -40,331 +40,305 @@ function NavLink({ href, children, testId }: { href: string; children: React.Rea
   );
 }
 
-function CtaLink({ href, children, testId }: { href: string; children: React.ReactNode; testId: string }) {
-  return (
-    <Link href={href}>
-      <a data-testid={testId}>{children}</a>
-    </Link>
-  );
-}
+const FAQ_ITEMS = [
+  {
+    q: "Como funciona o acompanhamento?",
+    a: "Trabalhamos com reuniões estratégicas quinzenais ou mensais (dependendo do pacote), além de um canal direto de comunicação para ajustes rápidos e dúvidas táticas."
+  },
+  {
+    q: "Quanto tempo demora para ver resultados?",
+    a: "O roadmap é de 90 dias. A primeira fase foca em clareza e estrutura, onde as mudanças de percepção começam em 30 dias. Resultados de crescimento previsível tendem a amadurecer ao longo do segundo mês."
+  },
+  {
+    q: "Eu preciso de uma equipe para executar?",
+    a: "O escopo é adaptado. Se você é um profissional solo, focamos em automações e estratégias enxutas. Se tem equipe, fornecemos a direção estratégica para eles executarem com precisão."
+  },
+  {
+    q: "O diagnóstico é realmente gratuito?",
+    a: "Sim. É o meu filtro para entender se consigo te ajudar e a sua oportunidade de ter um plano real em mãos antes de qualquer investimento."
+  }
+];
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-black/40 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6">
+    <div className="min-h-screen bg-black text-white font-sans overflow-x-hidden">
+      {/* Background Dinâmico */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 bg-grid opacity-30" />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.15, 0.1] 
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-violet-600/10 blur-[120px]" 
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.08, 0.12, 0.08] 
+          }}
+          transition={{ duration: 15, repeat: Infinity, delay: 2 }}
+          className="absolute -bottom-[20%] -right-[10%] w-[60%] h-[60%] rounded-full bg-cyan-600/10 blur-[120px]" 
+        />
+      </div>
+
+      <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-black/40 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
           <Link href="/">
-            <a data-testid="link-home-logo" className="group inline-flex items-center gap-2">
-              <span className="relative grid h-8 w-8 place-items-center rounded-xl border border-white/10 bg-white/[0.06]">
-                <span className="absolute inset-0 rounded-xl bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.35),transparent_60%)]" />
-                <span className="relative font-display text-sm tracking-tight">GA</span>
-              </span>
-              <span className="font-display text-sm tracking-tight text-white/90">Gabriel Amaral</span>
-              <span className="hidden text-sm text-white/45 md:inline">Digital</span>
+            <a data-testid="link-home-logo" className="group flex items-center gap-2">
+              <span className="font-display text-lg font-bold tracking-tight">GABRIEL AMARAL</span>
+              <span className="hidden text-sm text-white/40 md:inline font-mono">DIGITAL</span>
             </a>
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm text-white/65 md:flex" aria-label="Navegação principal">
-            <NavLink href="/diagnostico" testId="link-nav-diagnostico">
-              Diagnóstico
-            </NavLink>
-            <NavLink href="/contato" testId="link-nav-contato">
-              Contato
-            </NavLink>
-            <NavLink href="/links" testId="link-nav-links">
-              Links
-            </NavLink>
+          <nav className="hidden items-center gap-8 text-sm font-medium text-white/60 md:flex">
+            <a href="#metodo" className="hover:text-white transition-colors">Método N.O.R.T.E</a>
+            <a href="#entregaveis" className="hover:text-white transition-colors">Escopo</a>
+            <a href="#sobre" className="hover:text-white transition-colors">Sobre</a>
           </nav>
 
-          <div className="flex items-center gap-2">
-            <CtaLink href="/diagnostico" testId="link-header-cta">
-              <Button
-                data-testid="button-header-diagnostico"
-                className="group relative overflow-hidden rounded-xl border border-white/10 bg-white/[0.06] px-4 text-white shadow-[0_18px_60px_rgba(139,92,246,0.14)] hover:bg-white/[0.10]"
-              >
-                <span className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.35),transparent_55%),radial-gradient(circle_at_bottom,rgba(6,182,212,0.18),transparent_55%)]" />
-                <span className="relative inline-flex items-center gap-2">
-                  Quero crescer
-                  <ArrowRight className="h-4 w-4 opacity-80 transition-transform duration-300 group-hover:translate-x-0.5" />
-                </span>
+          <div className="flex items-center gap-4">
+            <Link href="/diagnostico">
+              <Button size="sm" className="rounded-full bg-white text-black hover:bg-white/90 px-5 font-bold">
+                Agendar Diagnóstico
               </Button>
-            </CtaLink>
+            </Link>
           </div>
         </div>
       </header>
 
-      <main>
-        <section className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid" />
-          <div className="absolute inset-0 soft-noise" />
-          <div className="pointer-events-none absolute -top-44 left-1/2 h-[560px] w-[820px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.35),transparent_60%)] blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-52 left-1/4 h-[520px] w-[720px] rounded-full bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.22),transparent_62%)] blur-3xl" />
-
-          <div className="relative mx-auto max-w-6xl px-4 py-16 md:px-6 md:py-24">
+      <main className="relative z-10">
+        {/* HERO */}
+        <section className="relative pt-32 pb-20 md:pt-48 md:pb-32">
+          <div className="mx-auto max-w-5xl px-4 text-center">
             <motion.div
               initial="hidden"
               animate="show"
-              variants={{
-                hidden: {},
-                show: { transition: { staggerChildren: 0.08 } },
-              }}
-              className="grid items-start gap-10 md:grid-cols-[1.15fr_0.85fr]"
+              variants={{ show: { transition: { staggerChildren: 0.15 } } }}
             >
-              <motion.div variants={fadeUp} className="flex flex-col gap-6">
-                <Pill testId="pill-hero">Autoridade silenciosa. Crescimento mensurável.</Pill>
-
-                <h1 data-testid="text-hero-title" className="font-display text-4xl leading-[1.05] tracking-tight md:text-6xl">
-                  Sua marca está <span className="text-gradient">invisível</span> enquanto concorrentes dominam o digital.
-                </h1>
-
-                <p data-testid="text-hero-subtitle" className="max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
-                  Estratégia de marca e crescimento digital para quem quer mais do que likes. Sem fórmulas mágicas. Apenas método,
-                  clareza e execução.
-                </p>
-
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <CtaLink href="/diagnostico" testId="link-hero-cta-primary">
-                    <Button
-                      data-testid="button-hero-diagnostico"
-                      className="group relative w-full overflow-hidden rounded-2xl bg-white text-black shadow-[0_26px_90px_rgba(139,92,246,0.18)] hover:bg-white sm:w-auto"
-                      size="lg"
-                    >
-                      <span className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[linear-gradient(135deg,rgba(139,92,246,0.22),rgba(6,182,212,0.18))]" />
-                      <span className="relative inline-flex items-center gap-2">
-                        Quero meu diagnóstico gratuito
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
-                      </span>
-                    </Button>
-                  </CtaLink>
-
-                  <CtaLink href="/links" testId="link-hero-cta-secondary">
-                    <Button
-                      data-testid="button-hero-ver-cases"
-                      variant="outline"
-                      className="w-full rounded-2xl border-white/15 bg-transparent text-white/85 hover:bg-white/[0.06] sm:w-auto"
-                      size="lg"
-                    >
-                      Ver estratégias
-                    </Button>
-                  </CtaLink>
-                </div>
-
-                <div className="mt-4 grid grid-cols-3 gap-4 rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-                  <Metric testId="metric-1" value="90 dias" label="roadmap claro" />
-                  <Metric testId="metric-2" value="30 min" label="diagnóstico direto" />
-                  <Metric testId="metric-3" value="método" label="sem achismo" />
-                </div>
+              <motion.div variants={fadeUp} className="mb-6">
+                <span className="inline-block rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-white/70">
+                  Posicionamento & Direção Estratégica
+                </span>
               </motion.div>
-
-              <motion.div variants={fadeUp} className="md:pt-4">
-                <Card className="glass neon-ring relative overflow-hidden rounded-3xl p-6">
-                  <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.35),transparent_60%)] blur-2xl" />
-                  <div className="absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.24),transparent_62%)] blur-2xl" />
-
-                  <div className="relative flex flex-col gap-5">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-xs font-medium text-white/55" data-testid="text-hero-card-kicker">
-                          O que você recebe
-                        </div>
-                        <div className="font-display text-lg tracking-tight" data-testid="text-hero-card-title">
-                          Clareza + direção
-                        </div>
-                      </div>
-                      <div className="grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-white/[0.06]">
-                        <Zap className="h-5 w-5 text-cyan-300/90" strokeWidth={2} />
-                      </div>
-                    </div>
-
-                    <div className="grid gap-3">
-                      <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                        <Shield className="mt-0.5 h-4 w-4 text-violet-300" strokeWidth={2} />
-                        <div>
-                          <div className="text-sm font-medium text-white" data-testid="text-hero-card-item-1-title">
-                            Diagnóstico sem enrolação
-                          </div>
-                          <div className="text-sm text-white/65" data-testid="text-hero-card-item-1-desc">
-                            Identifique os 3 gargalos que travam sua conversão e posicionamento.
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.04] p-4">
-                        <TrendingUp className="mt-0.5 h-4 w-4 text-cyan-300" strokeWidth={2} />
-                        <div>
-                          <div className="text-sm font-medium text-white" data-testid="text-hero-card-item-2-title">
-                            Roadmap de 90 dias
-                          </div>
-                          <div className="text-sm text-white/65" data-testid="text-hero-card-item-2-desc">
-                            Prioridades, ações e checkpoints para crescimento consistente.
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/30 p-4">
-                      <div>
-                        <div className="text-xs text-white/55" data-testid="text-hero-card-footnote">
-                          Sem compromisso — só estratégia.
-                        </div>
-                        <div className="text-sm font-medium text-white/90">Vagas limitadas na semana</div>
-                      </div>
-                      <CtaLink href="/diagnostico" testId="link-hero-card-cta">
-                        <Button data-testid="button-hero-card-cta" className="rounded-xl bg-white text-black hover:bg-white">
-                          Agendar
-                        </Button>
-                      </CtaLink>
-                    </div>
-                  </div>
-                </Card>
+              
+              <motion.h1 variants={fadeUp} className="font-display text-4xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl">
+                Você é bom no que faz.<br />
+                <span className="text-white/40">O mercado não percebe.</span>
+              </motion.h1>
+              
+              <motion.p variants={fadeUp} className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-white/60 md:text-xl">
+                Eu estruturo seu posicionamento e direção estratégica para transformar talento em reconhecimento e crescimento previsível no digital.
+              </motion.p>
+              
+              <motion.div variants={fadeUp} className="mt-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                <Link href="/diagnostico">
+                  <Button size="lg" className="h-14 rounded-full bg-white px-8 text-base font-bold text-black hover:bg-white/90">
+                    Quero sair do invisível
+                  </Button>
+                </Link>
+                <a href="#metodo">
+                  <Button size="lg" variant="ghost" className="h-14 rounded-full border border-white/10 px-8 text-base font-bold text-white/70 hover:bg-white/5">
+                    Conheça o Método N.O.R.T.E
+                  </Button>
+                </a>
               </motion.div>
             </motion.div>
           </div>
         </section>
 
-        <section className="relative mx-auto max-w-6xl px-4 py-14 md:px-6 md:py-20">
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-120px" }}
-            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
-            className="grid gap-10"
-          >
-            <motion.div variants={fadeUp} className="grid gap-4 md:grid-cols-2 md:items-end">
+        {/* IDENTIFICAÇÃO (Section Darker) */}
+        <section className="section-dark py-24 border-y border-white/5">
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="grid gap-12 md:grid-cols-2 md:items-center">
               <div>
-                <div data-testid="text-problem-kicker" className="text-xs font-medium text-white/55">
-                  Problema → Solução
-                </div>
-                <h2 data-testid="text-problem-title" className="font-display text-2xl tracking-tight md:text-4xl">
-                  Marcas invisíveis não vendem.
+                <h2 className="font-display text-3xl font-bold tracking-tight md:text-5xl leading-tight">
+                  O crescimento constante <br />
+                  <span className="text-violet-500">não é sorte.</span>
                 </h2>
+                <div className="mt-8 space-y-6">
+                  {[
+                    "Você posta e estuda todos os dias.",
+                    "Você tenta anúncios, mas o retorno é incerto.",
+                    "A audiência cresce, mas a percepção de valor não.",
+                    "O seu talento é maior do que o seu faturamento."
+                  ].map((text, i) => (
+                    <div key={i} className="flex items-center gap-4">
+                      <div className="flex-none rounded-full bg-violet-500/20 p-1">
+                        <ArrowRight className="h-4 w-4 text-violet-500" />
+                      </div>
+                      <span className="text-lg text-white/70">{text}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <p data-testid="text-problem-desc" className="text-white/70">
-                O jogo não é postar mais — é ser percebido como escolha óbvia. Você precisa de posicionamento, narrativa e um sistema
-                de crescimento.
-              </p>
-            </motion.div>
+              <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-8 md:p-12 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-violet-600/20 blur-3xl rounded-full" />
+                <p className="relative z-10 text-xl md:text-2xl leading-relaxed text-white/80 font-medium">
+                  Se você sente que está fazendo muito e sendo pouco percebido, o problema não é o seu esforço. É a sua <span className="text-white">estratégia de posicionamento</span>.
+                </p>
+                <div className="mt-8 flex items-center gap-4">
+                  <div className="h-px flex-1 bg-white/10" />
+                  <Sparkles className="h-5 w-5 text-violet-400" />
+                  <div className="h-px flex-1 bg-white/10" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <motion.div variants={fadeUp} className="grid gap-4 md:grid-cols-3">
+        {/* MÉTODO N.O.R.T.E */}
+        <section id="metodo" className="py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="text-center mb-16 md:mb-24">
+              <h2 className="font-display text-4xl font-bold md:text-6xl mb-6">Método N.O.R.T.E</h2>
+              <p className="text-white/50 text-lg max-w-xl mx-auto">Um caminho estruturado para quem busca autoridade e previsibilidade.</p>
+            </div>
+            
+            <div className="grid gap-4 md:grid-cols-5">
               {[
-                {
-                  title: "Estratégia de marca",
-                  desc: "Arquitetura de posicionamento, promessa e diferenciação para autoridade premium.",
-                  icon: <Sparkles className="h-4 w-4 text-violet-300" strokeWidth={2} />,
-                  testId: "card-service-1",
-                },
-                {
-                  title: "Crescimento digital",
-                  desc: "Sistema de aquisição e conteúdo que converte — com métricas e iteração.",
-                  icon: <Zap className="h-4 w-4 text-cyan-300" strokeWidth={2} />,
-                  testId: "card-service-2",
-                },
-                {
-                  title: "Posicionamento premium",
-                  desc: "Oferta, percepção e comunicação para subir ticket sem perder demanda.",
-                  icon: <Shield className="h-4 w-4 text-white/85" strokeWidth={2} />,
-                  testId: "card-service-3",
-                },
-              ].map((s) => (
-                <Card
-                  key={s.title}
-                  data-testid={s.testId}
-                  className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] p-6 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/[0.06]"
-                >
-                  <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.18),transparent_60%),radial-gradient(circle_at_bottom,rgba(6,182,212,0.10),transparent_60%)]" />
-                  <div className="relative flex flex-col gap-3">
-                    <div className="flex items-center justify-between">
-                      <div className="grid h-10 w-10 place-items-center rounded-2xl border border-white/10 bg-black/30">
-                        {s.icon}
-                      </div>
-                      <ArrowRight className="h-4 w-4 text-white/30 transition-all duration-300 group-hover:text-white/70 group-hover:translate-x-0.5" />
+                { l: "N", t: "Negócio", d: "Analise profunda de modelo, ticket e diferenciação.", icon: Target },
+                { l: "O", t: "Organização", d: "Estrutura interna para suportar o crescimento.", icon: Layout },
+                { l: "R", t: "Reposicionamento", d: "Ajuste de percepção e narrativa de autoridade.", icon: RefreshCcw },
+                { l: "T", t: "Trajetória", d: "Planejamento de longo prazo e marcos de sucesso.", icon: Navigation },
+                { l: "E", t: "Execução", d: "Ação guiada com foco no que traz resultado real.", icon: Play },
+              ].map((item, i) => (
+                <Card key={i} className="glass relative overflow-hidden p-6 hover:bg-white/[0.05] transition-all group">
+                  <div className="text-6xl font-display font-bold text-white/10 absolute -right-2 -top-2 group-hover:text-white/20 transition-colors">
+                    {item.l}
+                  </div>
+                  <div className="relative z-10">
+                    <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/5">
+                      <item.icon className="h-5 w-5 text-white/60" />
                     </div>
-                    <div className="font-display text-lg tracking-tight text-white">{s.title}</div>
-                    <div className="text-sm leading-relaxed text-white/65">{s.desc}</div>
+                    <h3 className="font-display text-xl font-bold mb-2">{item.t}</h3>
+                    <p className="text-sm text-white/50 leading-relaxed">{item.d}</p>
                   </div>
                 </Card>
               ))}
-            </motion.div>
-          </motion.div>
-        </section>
-
-        <section className="relative mx-auto max-w-6xl px-4 pb-20 md:px-6">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-8 md:p-10">
-            <div className="grid gap-10 md:grid-cols-[1fr_0.9fr] md:items-center">
-              <div className="grid gap-3">
-                <div data-testid="text-proof-kicker" className="text-xs font-medium text-white/55">
-                  Prova social
-                </div>
-                <h2 data-testid="text-proof-title" className="font-display text-2xl tracking-tight md:text-4xl">
-                  Autoridade é construída com consistência.
-                </h2>
-                <p data-testid="text-proof-desc" className="text-white/70">
-                  Alguns sinais simples (e reais) de maturidade digital — o que você busca não é volume, é percepção.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-2xl border border-white/10 bg-black/30 p-5" data-testid="card-proof-1">
-                  <div className="font-display text-2xl text-white">+ clareza</div>
-                  <div className="text-sm text-white/60">decisão mais rápida</div>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-black/30 p-5" data-testid="card-proof-2">
-                  <div className="font-display text-2xl text-white">+ valor</div>
-                  <div className="text-sm text-white/60">ticket mais alto</div>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-black/30 p-5" data-testid="card-proof-3">
-                  <div className="font-display text-2xl text-white">+ foco</div>
-                  <div className="text-sm text-white/60">menos dispersão</div>
-                </div>
-                <div className="rounded-2xl border border-white/10 bg-black/30 p-5" data-testid="card-proof-4">
-                  <div className="font-display text-2xl text-white">+ conversão</div>
-                  <div className="text-sm text-white/60">sem aumentar posts</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-10 grid gap-4 md:grid-cols-3">
-              {["Método claro e aplicável.", "Direto ao ponto — sem slides vazios.", "Você sai com próximos passos."].map((t, i) => (
-                <div
-                  key={t}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-sm text-white/70"
-                  data-testid={`testimonial-${i}`}
-                >
-                  “{t}”
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-10 flex flex-col items-start justify-between gap-4 rounded-2xl border border-white/10 bg-[linear-gradient(135deg,rgba(139,92,246,0.14),rgba(6,182,212,0.10))] p-6 md:flex-row md:items-center">
-              <div>
-                <div className="font-display text-lg tracking-tight" data-testid="text-final-cta-title">
-                  Comece sua transformação
-                </div>
-                <div className="text-sm text-white/70" data-testid="text-final-cta-desc">
-                  Diagnóstico gratuito + roadmap de 90 dias. Sem compromisso.
-                </div>
-              </div>
-              <CtaLink href="/diagnostico" testId="link-final-cta">
-                <Button data-testid="button-final-cta" size="lg" className="rounded-2xl bg-white text-black hover:bg-white">
-                  Agendar diagnóstico
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CtaLink>
             </div>
           </div>
         </section>
 
-        <footer className="border-t border-white/10 bg-black/40">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-10 text-sm text-white/60 md:flex-row md:items-center md:justify-between md:px-6">
-            <div data-testid="text-footer-brand">© {new Date().getFullYear()} Gabriel Amaral Digital</div>
-            <div className="flex items-center gap-4">
-              <NavLink href="/contato" testId="link-footer-contato">
-                Contato
-              </NavLink>
-              <NavLink href="/links" testId="link-footer-links">
-                Links
-              </NavLink>
+        {/* O QUE VOCÊ RECEBE & ONDE ATUO */}
+        <section id="entregaveis" className="section-light py-24 md:py-32">
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="grid gap-16 lg:grid-cols-[1fr_0.8fr]">
+              <div>
+                <h2 className="font-display text-4xl font-bold md:text-5xl mb-12">O escopo da entrega</h2>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  {[
+                    "Diagnóstico estratégico individual",
+                    "Documento de posicionamento",
+                    "Roadmap de 90 dias",
+                    "Ações e estratégias adaptadas",
+                    "Acompanhamento próximo",
+                    "Execução guiada"
+                  ].map((text, i) => (
+                    <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-black/5 border border-black/5">
+                      <CheckCircle2 className="h-6 w-6 text-black/80 flex-none" />
+                      <span className="font-bold text-black/80">{text}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              
+              <div className="rounded-3xl border border-black/10 p-8 md:p-10 relative">
+                <h3 className="font-display text-2xl font-bold mb-6">Onde atuo</h3>
+                <p className="mb-8 text-black/60 leading-relaxed italic">
+                  "Meu compromisso não é com uma lista de tarefas, mas com o que é vital para o seu negócio agora. Vou te oferecer o melhor para o seu momento."
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {["Growth Strategy", "Brand Positioning", "Digital Sales Systems", "Content Authority", "Marketing Operations"].map(s => (
+                    <span key={s} className="px-4 py-2 bg-black/5 border border-black/10 rounded-full text-xs font-bold uppercase tracking-wide text-black/60">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
+          </div>
+        </section>
+
+        {/* DIFERENCIAÇÃO */}
+        <section className="py-24 border-y border-white/5 relative overflow-hidden">
+          <div className="mx-auto max-w-4xl px-4 text-center">
+            <h2 className="font-display text-3xl font-bold md:text-5xl mb-8 tracking-tight">Você não será apenas mais um cliente.</h2>
+            <p className="text-xl text-white/60 leading-relaxed">
+              Eu não vendo volume de posts ou fórmulas automáticas. Eu analiso, acompanho e penso estrategicamente no seu negócio junto com você. Minha entrega é baseada em <span className="text-white">inteligência e direção</span>.
+            </p>
+          </div>
+        </section>
+
+        {/* SOBRE */}
+        <section id="sobre" className="py-24 md:py-32 bg-white/5">
+          <div className="mx-auto max-w-6xl px-4">
+            <div className="grid gap-12 md:grid-cols-[0.8fr_1fr] md:items-center">
+              <div className="aspect-square rounded-3xl bg-white/10 border border-white/10 overflow-hidden relative">
+                <div className="absolute inset-0 flex items-center justify-center text-white/20 font-display font-bold text-4xl uppercase tracking-widest -rotate-45">
+                  Gabriel Amaral
+                </div>
+                {/* Placeholder para foto real */}
+              </div>
+              <div>
+                <h2 className="font-display text-4xl font-bold mb-6">Sobre mim</h2>
+                <div className="space-y-4 text-white/60 text-lg leading-relaxed">
+                  <p>Minha missão é ajudar especialistas e marcas a saírem do ruído e ocuparem o lugar que merecem no digital através de estratégia real.</p>
+                  <p>Acredito que o crescimento vem da combinação de um posicionamento forte com uma execução impecável. Sem atalhos, com método.</p>
+                </div>
+                <div className="mt-8">
+                  <a href="https://instagram.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 text-white/80 hover:text-white transition-colors group">
+                    <Instagram className="h-6 w-6" />
+                    <span className="font-bold underline underline-offset-4 group-hover:decoration-violet-500 transition-colors">Acompanhe os conteúdos no IG</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="py-24">
+          <div className="mx-auto max-w-3xl px-4">
+            <h2 className="font-display text-3xl font-bold mb-12 text-center">Perguntas Frequentes</h2>
+            <Accordion type="single" collapsible className="w-full">
+              {FAQ_ITEMS.map((item, i) => (
+                <AccordionItem key={i} value={`item-${i}`} className="border-white/10">
+                  <AccordionTrigger className="text-left text-lg font-bold hover:text-white/80 transition-colors">
+                    {item.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-white/50 text-base leading-relaxed">
+                    {item.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+
+        {/* CTA FINAL */}
+        <section className="py-24 md:py-48 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-violet-600/5 blur-3xl rounded-full scale-150" />
+          <div className="mx-auto max-w-4xl px-4 relative z-10">
+            <h2 className="font-display text-4xl font-bold md:text-7xl leading-tight tracking-tight">
+              Se continuar como está,<br />
+              <span className="text-white/40">você continuará invisível.</span>
+            </h2>
+            <p className="mt-8 text-xl text-white/60">Se estruturar agora, começa a mudar o jogo.</p>
+            <div className="mt-12">
+              <Link href="/diagnostico">
+                <Button size="lg" className="h-16 rounded-full bg-white px-10 text-lg font-bold text-black hover:scale-105 transition-transform">
+                  Quero sair do invisível
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <footer className="border-t border-white/5 py-12 text-center">
+          <div className="mx-auto max-w-6xl px-4">
+            <p className="text-sm text-white/30">© {new Date().getFullYear()} Gabriel Amaral Digital — Todos os direitos reservados.</p>
           </div>
         </footer>
       </main>

@@ -108,6 +108,11 @@
 
   --elevate-1: rgba(255, 255, 255, 0.04);
   --elevate-2: rgba(255, 255, 255, 0.09);
+
+  --section-light-bg: 0 0% 100%;
+  --section-light-fg: 240 10% 4%;
+  --section-dark-bg: 240 5% 4%;
+  --section-dark-fg: 0 0% 98%;
 }
 
 @layer base {
@@ -116,6 +121,7 @@
   }
   html {
     color-scheme: dark;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground antialiased;
@@ -124,6 +130,19 @@
 }
 
 @layer utilities {
+  .section-light {
+    --background: var(--section-light-bg);
+    --foreground: var(--section-light-fg);
+    --border: 240 6% 90%;
+    @apply bg-background text-foreground;
+  }
+  .section-dark {
+    --background: var(--section-dark-bg);
+    --foreground: var(--section-dark-fg);
+    --border: 240 4% 16%;
+    @apply bg-background text-foreground;
+  }
+
   .font-display {
     font-family: var(--font-display);
   }
@@ -137,20 +156,16 @@
 
   .bg-grid {
     background-image:
-      radial-gradient(ellipse at top, rgba(139, 92, 246, 0.14) 0%, rgba(10, 10, 11, 0) 55%),
-      radial-gradient(ellipse at bottom, rgba(6, 182, 212, 0.10) 0%, rgba(10, 10, 11, 0) 55%),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: auto, auto, 56px 56px, 56px 56px;
-    background-position: center, center, top left, top left;
+      radial-gradient(ellipse at top, rgba(139, 92, 246, 0.12) 0%, rgba(10, 10, 11, 0) 55%),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: auto, 56px 56px, 56px 56px;
+    background-position: center, top left, top left;
   }
 
   .glass {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    box-shadow:
-      0 30px 90px rgba(0, 0, 0, 0.45),
-      0 1px 0 rgba(255, 255, 255, 0.06) inset;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
   }
 
