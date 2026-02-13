@@ -224,36 +224,52 @@ export default function HomePage() {
         {/* O QUE VOCÊ RECEBE & ONDE ATUO */}
         <section id="entregaveis" className="section-light py-24 md:py-32">
           <div className="mx-auto max-w-6xl px-4">
-            <div className="grid gap-16 lg:grid-cols-[1fr_0.8fr]">
+            <div className="grid gap-16 lg:grid-cols-[1.2fr_0.8fr]">
               <div>
-                <h2 className="font-display text-4xl font-bold md:text-5xl mb-12">O escopo da entrega</h2>
+                <h2 className="font-display text-4xl font-bold md:text-5xl mb-12 text-black">O escopo da entrega</h2>
                 <div className="grid gap-4 sm:grid-cols-2">
                   {[
-                    "Diagnóstico estratégico individual",
-                    "Documento de posicionamento",
-                    "Roadmap de 90 dias",
-                    "Ações e estratégias adaptadas",
-                    "Acompanhamento próximo",
-                    "Execução guiada"
-                  ].map((text, i) => (
-                    <div key={i} className="flex items-start gap-4 p-5 rounded-2xl bg-black/5 border border-black/5">
-                      <CheckCircle2 className="h-6 w-6 text-black/80 flex-none" />
-                      <span className="font-bold text-black/80">{text}</span>
+                    { t: "Diagnóstico estratégico", d: "Identificação de gargalos e oportunidades reais." },
+                    { t: "Documento de posicionamento", d: "Sua nova narrativa e arquitetura de marca." },
+                    { t: "Roadmap de 90 dias", d: "Plano de ação detalhado com prioridades claras." },
+                    { t: "Estratégias adaptadas", d: "Soluções sob medida para o seu momento atual." },
+                    { t: "Acompanhamento próximo", d: "Suporte direto na implementação das ações." },
+                    { t: "Execução guiada", d: "Direção técnica para garantir a qualidade final." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex flex-col gap-2 p-6 rounded-2xl bg-black/5 border border-black/5">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-black/80 flex-none" />
+                        <span className="font-bold text-black/90">{item.t}</span>
+                      </div>
+                      <p className="text-sm text-black/60 pl-8">{item.d}</p>
                     </div>
                   ))}
                 </div>
               </div>
               
-              <div className="rounded-3xl border border-black/10 p-8 md:p-10 relative">
-                <h3 className="font-display text-2xl font-bold mb-6">Onde atuo</h3>
+              <div className="rounded-3xl border border-black/10 p-8 md:p-10 bg-white shadow-sm">
+                <h3 className="font-display text-2xl font-bold mb-6 text-black">Arquitetura de Serviços</h3>
                 <p className="mb-8 text-black/60 leading-relaxed italic">
-                  "Meu compromisso não é com uma lista de tarefas, mas com o que é vital para o seu negócio agora. Vou te oferecer o melhor para o seu momento."
+                  "Meu compromisso não é com uma lista de tarefas, mas com o que é vital para o seu negócio. Vou te oferecer o melhor para o seu momento."
                 </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Growth Strategy", "Brand Positioning", "Digital Sales Systems", "Content Authority", "Marketing Operations"].map(s => (
-                    <span key={s} className="px-4 py-2 bg-black/5 border border-black/10 rounded-full text-xs font-bold uppercase tracking-wide text-black/60">
-                      {s}
-                    </span>
+                <div className="space-y-6">
+                  {[
+                    { category: "Posicionamento & Marca", services: ["Diagnóstico e Reposicionamento", "Branding Estratégico", "Proposta de Valor"] },
+                    { category: "Comunicação & Conteúdo", services: ["Estratégia de Conteúdo", "Copy Estratégica", "Auditoria"] },
+                    { category: "Visibilidade & Aquisição", services: ["Crescimento Orgânico", "Funis de Leads", "Tráfego Pago"] },
+                    { category: "Vendas & Conversão", services: ["Social Selling", "Processo Comercial", "Scripts"] },
+                    { category: "Estratégia & Direção", services: ["Consultoria de Negócio", "Mentoria", "Advisory"] }
+                  ].map((group, idx) => (
+                    <div key={idx} className="border-b border-black/5 pb-4 last:border-0 last:pb-0">
+                      <h4 className="text-xs font-black uppercase tracking-widest text-black/40 mb-3">{group.category}</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {group.services.map(s => (
+                          <span key={s} className="px-3 py-1 bg-black/5 rounded-lg text-xs font-bold text-black/70">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
