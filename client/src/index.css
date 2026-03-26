@@ -25,6 +25,8 @@
   --color-accent-foreground: hsl(var(--accent-foreground));
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-success: hsl(var(--success));
+  --color-success-foreground: hsl(var(--success-foreground));
   --color-border: hsl(var(--border));
   --color-primary-border: hsl(var(--primary-border));
   --color-accent-border: hsl(var(--accent-border));
@@ -38,31 +40,34 @@
 }
 
 :root {
-  --background: 240 5% 98%;
+  --background: 40 20% 97%;
   --foreground: 240 10% 8%;
 
-  --card: 0 0% 100%;
+  --card: 40 15% 98%;
   --card-foreground: 240 10% 8%;
-  --popover: 0 0% 100%;
+  --popover: 40 15% 98%;
   --popover-foreground: 240 10% 8%;
 
-  --border: 240 6% 90%;
-  --card-border: 240 6% 88%;
-  --input: 240 6% 84%;
+  --border: 40 10% 88%;
+  --card-border: 40 10% 85%;
+  --input: 40 10% 82%;
 
   --primary: 255 83% 61%;
   --primary-foreground: 240 10% 98%;
-  --secondary: 240 6% 96%;
+  --secondary: 40 15% 94%;
   --secondary-foreground: 240 10% 10%;
 
-  --muted: 240 6% 96%;
-  --muted-foreground: 240 4% 42%;
+  --muted: 40 15% 94%;
+  --muted-foreground: 40 8% 42%;
 
   --accent: 190 95% 40%;
   --accent-foreground: 240 10% 98%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 240 10% 98%;
+  
+  --success: 142 76% 36%;
+  --success-foreground: 240 10% 98%;
 
   --ring: 255 83% 61%;
 
@@ -77,42 +82,47 @@
 }
 
 .dark {
-  --background: 240 5% 4%;
-  --foreground: 0 0% 98%;
+  --background: 0 0% 4%;
+  --foreground: 40 20% 96%;
 
-  --card: 240 4% 8%;
-  --card-foreground: 0 0% 98%;
-  --popover: 240 4% 8%;
-  --popover-foreground: 0 0% 98%;
+  --card: 0 0% 6%;
+  --card-foreground: 40 20% 96%;
+  --popover: 0 0% 6%;
+  --popover-foreground: 40 20% 96%;
 
-  --border: 240 4% 16%;
-  --card-border: 240 4% 14%;
-  --input: 240 4% 20%;
+  --border: 0 0% 16%;
+  --card-border: 0 0% 14%;
+  --input: 0 0% 20%;
 
   --primary: 255 83% 61%;
-  --primary-foreground: 0 0% 98%;
+  --primary-foreground: 240 10% 98%;
 
-  --secondary: 240 4% 12%;
-  --secondary-foreground: 0 0% 96%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 40 20% 96%;
 
-  --muted: 240 4% 12%;
-  --muted-foreground: 240 5% 64%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 40 10% 58%;
 
   --accent: 190 95% 45%;
-  --accent-foreground: 240 5% 4%;
+  --accent-foreground: 0 0% 4%;
 
   --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 98%;
+  --destructive-foreground: 240 10% 98%;
+  
+  --success: 142 76% 36%;
+  --success-foreground: 240 10% 98%;
 
   --ring: 255 83% 61%;
 
   --elevate-1: rgba(255, 255, 255, 0.04);
   --elevate-2: rgba(255, 255, 255, 0.09);
 
-  --section-light-bg: 0 0% 100%;
+  --section-light-bg: 40 15% 96%;
   --section-light-fg: 240 10% 4%;
-  --section-dark-bg: 240 5% 4%;
-  --section-dark-fg: 0 0% 98%;
+  --section-dark-bg: 0 0% 4%;
+  --section-dark-fg: 40 20% 96%;
+  --section-offwhite-bg: 40 20% 97%;
+  --section-offwhite-fg: 240 10% 8%;
 }
 
 @layer base {
@@ -133,13 +143,19 @@
   .section-light {
     --background: var(--section-light-bg);
     --foreground: var(--section-light-fg);
-    --border: 240 6% 90%;
+    --border: 40 10% 88%;
     @apply bg-background text-foreground;
   }
   .section-dark {
     --background: var(--section-dark-bg);
     --foreground: var(--section-dark-fg);
-    --border: 240 4% 16%;
+    --border: 0 0% 16%;
+    @apply bg-background text-foreground;
+  }
+  .section-offwhite {
+    --background: var(--section-offwhite-bg);
+    --foreground: var(--section-offwhite-fg);
+    --border: 40 10% 88%;
     @apply bg-background text-foreground;
   }
 
@@ -153,18 +169,53 @@
     background-clip: text;
     color: transparent;
   }
+  
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .text-gradient-success {
+    background: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(142 71% 45%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .text-gradient-danger {
+    background: linear-gradient(135deg, hsl(0 84% 60%) 0%, hsl(0 72% 51%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
   .bg-grid {
     background-image:
-      radial-gradient(ellipse at top, rgba(139, 92, 246, 0.12) 0%, rgba(10, 10, 11, 0) 55%),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: auto, 56px 56px, 56px 56px;
+      radial-gradient(ellipse at top, rgba(139, 92, 246, 0.08) 0%, rgba(10, 10, 11, 0) 55%),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: auto, 60px 60px, 60px 60px;
     background-position: center, top left, top left;
+  }
+  
+  .bg-grid-light {
+    background-image:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    background-position: top left;
   }
 
   .glass {
     background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+  }
+  
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(12px);
   }
@@ -184,7 +235,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    opacity: 0.08;
+    opacity: 0.06;
     mix-blend-mode: overlay;
     background-image:
       repeating-linear-gradient(
@@ -195,4 +246,39 @@
         transparent 3px
       );
   }
+  
+  .glow-violet {
+    box-shadow: 0 0 80px rgba(139, 92, 246, 0.15);
+  }
+  
+  .glow-cyan {
+    box-shadow: 0 0 80px rgba(6, 182, 212, 0.15);
+  }
+  
+  .text-shadow {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Smooth scroll behavior for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
 }
