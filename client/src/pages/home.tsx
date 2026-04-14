@@ -263,7 +263,7 @@ export default function HomePage() {
 
           <div className="flex items-center gap-3">
             <a 
-              href="https://wa.me/554891898449" 
+              href="https://wa.me/554898026102" 
               target="_blank" 
               rel="noreferrer"
               className="hidden sm:flex items-center gap-2 px-4 py-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
@@ -729,11 +729,12 @@ export default function HomePage() {
               {/* Imagem */}
               <motion.div variants={fadeUp} className="relative">
                 <div className="aspect-[4/5] rounded-3xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 overflow-hidden relative">
-                  {/* Placeholder para foto real */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-white/20">
-                    <div className="w-32 h-32 rounded-full bg-white/10 mb-4" />
-                    <span className="font-display font-bold text-2xl uppercase tracking-widest">Gabriel Amaral</span>
-                  </div>
+                  <img
+                    src="/amaral1.jpeg"
+                    alt="Gabriel Amaral"
+                    className="h-full w-full object-cover object-[20%_center]"
+                    loading="lazy"
+                  />
                 </div>
                 {/* Elemento decorativo */}
                 <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-gradient-to-br from-violet-500/20 to-purple-500/20 rounded-full blur-3xl" />
@@ -882,7 +883,7 @@ export default function HomePage() {
                 <a href="https://www.instagram.com/gabrielamaral.digital" target="_blank" rel="noreferrer" className="text-white/40 hover:text-white transition-colors">
                   <Instagram className="h-5 w-5" />
                 </a>
-                <a href="https://wa.me/554891898449" target="_blank" rel="noreferrer" className="text-white/40 hover:text-white transition-colors">
+                <a href="https://wa.me/554898026102" target="_blank" rel="noreferrer" className="text-white/40 hover:text-white transition-colors">
                   <MessageCircle className="h-5 w-5" />
                 </a>
               </div>

@@ -32,7 +32,7 @@ const items: LinkItem[] = [
   {
     id: "wpp",
     label: "WhatsApp (mensagem pronta)",
-    href: "https://wa.me/55SEUNUMERO?text=Ol%C3%A1!%20Quero%20agendar%20um%20diagn%C3%B3stico%20gratuito!",
+    href: "https://wa.me/554898026102?text=Ol%C3%A1!%20Quero%20agendar%20um%20diagn%C3%B3stico%20gratuito!",
     category: "Contato",
   },
   {

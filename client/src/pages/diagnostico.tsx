@@ -60,7 +60,7 @@ export default function DiagnosticoPage() {
     return `Olá! Sou ${nome || "[NOME]"} da ${empresa || "[EMPRESA]"}. Quero agendar meu diagnóstico gratuito!`;
   }, [watched.nome, watched.empresa]);
 
-  const waHref = `https://wa.me/55SEUNUMERO?text=${encodeURIComponent(waText)}`;
+  const waHref = `https://wa.me/554898026102?text=${encodeURIComponent(waText)}`;
 
   function onSubmit(values: FormValues) {
     const text =
@@ -71,7 +71,7 @@ export default function DiagnosticoPage() {
       `O que já tentei: ${values.tentou}\n` +
       `WhatsApp: ${values.whatsapp}`;
 
-    const href = `https://wa.me/55SEUNUMERO?text=${encodeURIComponent(text)}`;
+    const href = `https://wa.me/554898026102?text=${encodeURIComponent(text)}`;
     window.open(href, "_blank", "noopener,noreferrer");
     setSubmitted(true);
   }

@@ -38,7 +38,7 @@ export default function ContatoPage() {
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             <a
-              href="https://wa.me/55SEUNUMERO?text=Ol%C3%A1!%20Quero%20falar%20sobre%20crescimento%20e%20posicionamento."
+              href="https://wa.me/554898026102?text=Ol%C3%A1!%20Quero%20falar%20sobre%20crescimento%20e%20posicionamento."
               target="_blank"
               rel="noreferrer"
               className="group rounded-3xl border border-white/10 bg-white/[0.04] p-6 hover:bg-white/[0.06]"
@@ -84,7 +84,7 @@ export default function ContatoPage() {
               <div className="mt-1 text-sm text-white/70">Em dias úteis. Se for algo imediato, WhatsApp primeiro.</div>
               <div className="mt-5">
                 <a
-                  href="https://wa.me/55SEUNUMERO?text=Ol%C3%A1!%20Tenho%20urg%C3%AAncia%20e%20quero%20agendar%20um%20diagn%C3%B3stico."
+                  href="https://wa.me/554898026102?text=Ol%C3%A1!%20Tenho%20urg%C3%AAncia%20e%20quero%20agendar%20um%20diagn%C3%B3stico."
                   target="_blank"
                   rel="noreferrer"
                   data-testid="link-contato-cta"
@@ -103,7 +103,7 @@ export default function ContatoPage() {
 
           <div className="mt-12 flex items-center justify-center">
             <a
-              href="https://wa.me/55SEUNUMERO?text=Ol%C3%A1!%20Quero%20agendar%20um%20diagn%C3%B3stico%20gratuito."
+              href="https://wa.me/554898026102?text=Ol%C3%A1!%20Quero%20agendar%20um%20diagn%C3%B3stico%20gratuito."
               target="_blank"
               rel="noreferrer"
               className="relative inline-flex w-full max-w-xl items-center justify-center rounded-3xl border border-white/10 bg-white/[0.06] px-6 py-5 text-center font-display text-lg tracking-tight text-white shadow-[0_30px_120px_rgba(6,182,212,0.10)] transition hover:bg-white/[0.10]"
